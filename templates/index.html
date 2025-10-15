@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block title %}Inicio - Escuela Silviano Matamoros{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b')] bg-cover bg-center h-[500px] flex items-center justify-center">
+  <div class="bg-black bg-opacity-50 p-10 text-center rounded-md" data-aos="fade-up" data-aos-duration="1200">
+    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">Bienvenido a la Escuela Silviano Matamoros</h1>
+    <p class="text-white text-lg md:text-xl mb-6">Formamos generaciones con valores y excelencia académica</p>
+    <a href="/cursos" class="bg-[#F6C90E] hover:bg-yellow-400 text-[#003366] font-bold py-3 px-6 rounded-lg shadow-lg transition-transform hover:scale-105">Explora nuestros cursos</a>
+  </div>
+</section>
+
+<!-- Quiénes somos -->
+<section class="py-20 bg-gray-100 dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="md:flex md:items-center md:space-x-12">
+      <!-- Imagen/logo -->
+      <div class="md:w-1/2 mb-8 md:mb-0" data-aos="fade-right" data-aos-duration="1200">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Escuela Silviano Matamoros" class="rounded-lg shadow-lg w-full">
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="1200">
+        <h2 class="text-4xl font-bold mb-6 text-[#003366]">Quiénes somos</h2>
+        <p class="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          La <span class="font-semibold text-azulescuela">Escuela Silviano Matamoros</span> es una institución pluralista que respeta la libertad de cátedra y el criterio de estudiantes y docentes. Formamos generaciones con valores, excelencia académica y competencias prácticas para enfrentar retos.
+        </p>
+        <p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+          Ofrecemos educación desde primaria hasta bachillerato técnico, con diplomas reconocidos por MINED e INATEC. Fomentamos participación en actividades deportivas, culturales y ecológicas, así como prácticas profesionales mediante convenios con empresas e instituciones.
+        </p>
+
+        <!-- Valores destacados con íconos -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-cross text-2xl text-azulescuela mt-1"></i>
+            <span class="text-gray-700 dark:text-gray-300">Espiritualidad Cristiana</span>
+          </div>
+          <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="150">
+            <i class="fas fa-hand-holding-heart text-2xl text-azulescuela mt-1"></i>
+            <span class="text-gray-700 dark:text-gray-300">Servicio al prójimo</span>
+          </div>
+          <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-balance-scale text-2xl text-azulescuela mt-1"></i>
+            <span class="text-gray-700 dark:text-gray-300">Justicia y Equidad</span>
+          </div>
+          <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="250">
+            <i class="fas fa-star text-2xl text-azulescuela mt-1"></i>
+            <span class="text-gray-700 dark:text-gray-300">Excelencia</span>
+          </div>
+          <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-handshake text-2xl text-azulescuela mt-1"></i>
+            <span class="text-gray-700 dark:text-gray-300">Honestidad e Integridad</span>
+          </div>
+          <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="350">
+            <i class="fas fa-user-shield text-2xl text-azulescuela mt-1"></i>
+            <span class="text-gray-700 dark:text-gray-300">Ética profesional</span>
+          </div>
+        </div>
+
+        <p class="mt-6 text-gray-700 dark:text-gray-300 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+          Desde nuestra fundación en 1920, trabajamos para mantener altos estándares de calidad, formando egresados capaces de emprender, innovar y aplicar sus conocimientos con creatividad y responsabilidad.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Cursos Destacados -->
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Cursos Destacados</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      {% for curso in destacados %}
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105" data-aos="zoom-in" data-aos-delay="{{ loop.index * 150 }}">
+        <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 text-[#003366]">{{ curso.nombre }}</h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">{{ curso.descripcion_corta }}</p>
+          <a href="/curso/{{ curso.nombre }}" class="text-[#F6C90E] font-semibold hover:underline">Ver más</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Valores Institucionales -->
+<section class="py-16 bg-gray-100 dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Nuestros Valores</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center transition-transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-chalkboard-teacher text-4xl text-[#003366] mb-4"></i>
+        <h3 class="font-bold mb-2">Profesores Capacitados</h3>
+        <p>Expertos en su área para garantizar una educación de calidad.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center transition-transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-book-open text-4xl text-[#003366] mb-4"></i>
+        <h3 class="font-bold mb-2">Programas Completos</h3>
+        <p>Cursos diseñados para cubrir todas las necesidades educativas.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center transition-transform hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-users text-4xl text-[#003366] mb-4"></i>
+        <h3 class="font-bold mb-2">Ambiente Colaborativo</h3>
+        <p>Fomentamos el aprendizaje en equipo y la creatividad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Todos los cursos -->
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Todos nuestros cursos</h2>
+    <div class="grid md:grid-cols-4 gap-8">
+      {% for curso in cursos %}
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105" data-aos="fade-up" data-aos-delay="{{ loop.index * 50 }}">
+        <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-bold mb-1 text-[#003366]">{{ curso.nombre }}</h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-2">{{ curso.descripcion_corta }}</p>
+          <a href="/curso/{{ curso.nombre }}" class="text-[#F6C90E] font-semibold hover:underline">Ver más</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Llamado a la acción -->
+<section class="py-16 bg-[#003366]">
+  <div class="container mx-auto px-4 text-center" data-aos="fade-up" data-aos-duration="1200">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para unirte a nuestra comunidad?</h2>
+    <p class="text-gray-200 mb-6">Descubre todos nuestros cursos y comienza a aprender con nosotros hoy mismo.</p>
+    <a href="/contacto" class="bg-[#F6C90E] hover:bg-yellow-400 text-[#003366] font-bold py-3 px-6 rounded-lg shadow-lg transition-transform hover:scale-105">Contáctanos</a>
+  </div>
+</section>
+{% endblock %}

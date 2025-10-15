@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Buscar - Escuela Silviano Matamoros{% endblock %}
+
+{% block content %}
+<section class="container-max px-4 py-16">
+  <h2 class="text-3xl font-bold text-center mb-8">Resultados de búsqueda: "{{ query }}"</h2>
+
+  {% if resultados %}
+    <div class="grid md:grid-cols-3 gap-6">
+      {% for curso in resultados %}
+        <article class="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-40 object-cover rounded mb-3" loading="lazy">
+          <h3 class="font-bold">{{ curso.nombre }}</h3>
+          <p class="text-sm text-gray-500">{{ curso.descripcion_corta }}</p>
+          <a href="/curso/{{ curso.nombre }}" class="text-doradoescuela">Ver más</a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-gray-500">No se encontraron resultados.</p>
+  {% endif %}
+</section>
+{% endblock %}

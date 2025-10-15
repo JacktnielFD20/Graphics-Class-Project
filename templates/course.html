@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{ curso.nombre }} - Escuela Silviano Matamoros{% endblock %}
+
+{% block content %}
+<section class="container-max px-4 py-16">
+  <div class="grid md:grid-cols-3 gap-8 items-start">
+    <div class="md:col-span-2" data-aos="fade-right">
+      <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-80 object-cover rounded-lg shadow-lg mb-6" loading="lazy">
+      <h1 class="text-3xl font-bold mb-3">{{ curso.nombre }}</h1>
+      <p class="text-gray-700 dark:text-gray-300 mb-4">{{ curso.descripcion_larga }}</p>
+
+      <div class="grid md:grid-cols-3 gap-4 mt-6">
+        <div class="p-4 bg-white dark:bg-gray-800 rounded shadow">
+          <h4 class="font-semibold">Duración</h4>
+          <p class="text-sm text-gray-500">{{ curso.duracion }}</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-800 rounded shadow">
+          <h4 class="font-semibold">Modalidad</h4>
+          <p class="text-sm text-gray-500">{{ curso.modalidad }}</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-800 rounded shadow">
+          <h4 class="font-semibold">Edad recomendada</h4>
+          <p class="text-sm text-gray-500">{{ curso.edad_recomendada }}</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-left">
+      <h3 class="text-xl font-bold mb-3">Inscripción</h3>
+      <p class="text-sm mb-4">Fecha de inicio: <strong>{{ curso.fecha_inicio }}</strong></p>
+      <a href="/contacto" class="block text-center py-3 rounded bg-doradoescuela hover:bg-yellow-400 text-white font-semibold">Preinscribirme</a>
+    </aside>
+  </div>
+</section>
+{% endblock %}
