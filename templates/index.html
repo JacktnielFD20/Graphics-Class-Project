@@ -2,27 +2,29 @@
 {% block title %}Inicio - Escuela Silviano Matamoros{% endblock %}
 
 {% block content %}
+
 <!-- Hero Section -->
-<section class="relative bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b')] bg-cover bg-center h-[500px] flex items-center justify-center">
-  <div class="bg-black bg-opacity-50 p-10 text-center rounded-md" data-aos="fade-up" data-aos-duration="1200">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">Bienvenido a la Escuela Silviano Matamoros</h1>
-    <p class="text-white text-lg md:text-xl mb-6">Formamos generaciones con valores y excelencia académica</p>
-    <a href="/cursos" class="bg-[#F6C90E] hover:bg-yellow-400 text-[#003366] font-bold py-3 px-6 rounded-lg shadow-lg transition-transform hover:scale-105">Explora nuestros cursos</a>
+<section class="relative bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b')] bg-cover bg-center min-h-screen sm:h-96 md:h-[500px] flex items-center justify-center">
+  <div class="bg-black bg-opacity-50 p-6 sm:p-10 text-center rounded-md max-w-3xl" data-aos="fade-up" data-aos-duration="1200">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4">Bienvenido a la Escuela Silviano Matamoros</h1>
+    <p class="text-white text-base sm:text-lg md:text-xl mb-6">Formamos generaciones con valores y excelencia académica</p>
+    <a href="/cursos" class="bg-[#F6C90E] hover:bg-yellow-400 text-[#003366] font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg shadow-lg transition-transform hover:scale-105 inline-block">Explora nuestros cursos</a>
   </div>
 </section>
 
 <!-- Quiénes somos -->
-<section class="py-20 bg-gray-100 dark:bg-gray-900">
-  <div class="container mx-auto px-4">
+<section class="py-12 sm:py-16 bg-gray-100 dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="md:flex md:items-center md:space-x-12">
+      
       <!-- Imagen/logo -->
-      <div class="md:w-1/2 mb-8 md:mb-0" data-aos="fade-right" data-aos-duration="1200">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Escuela Silviano Matamoros" class="rounded-lg shadow-lg w-full">
+      <div class="md:w-1/2 mb-6 md:mb-0" data-aos="fade-right" data-aos-duration="1200">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Escuela Silviano Matamoros" class="rounded-lg shadow-lg w-full h-auto">
       </div>
 
       <!-- Contenido principal -->
       <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="1200">
-        <h2 class="text-4xl font-bold mb-6 text-[#003366]">Quiénes somos</h2>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-[#003366]">Quiénes somos</h2>
         <p class="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed">
           La <span class="font-semibold text-azulescuela">Escuela Silviano Matamoros</span> es una institución pluralista que respeta la libertad de cátedra y el criterio de estudiantes y docentes. Formamos generaciones con valores, excelencia académica y competencias prácticas para enfrentar retos.
         </p>
@@ -31,7 +33,7 @@
         </p>
 
         <!-- Valores destacados con íconos -->
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="100">
             <i class="fas fa-cross text-2xl text-azulescuela mt-1"></i>
             <span class="text-gray-700 dark:text-gray-300">Espiritualidad Cristiana</span>
@@ -66,16 +68,17 @@
   </div>
 </section>
 
-
 <!-- Cursos Destacados -->
-<section class="py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Cursos Destacados</h2>
-    <div class="grid md:grid-cols-3 gap-8">
+<section class="py-12 sm:py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Cursos Destacados</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
       {% for curso in destacados %}
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105" data-aos="zoom-in" data-aos-delay="{{ loop.index * 150 }}">
-        <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-48 object-cover">
-        <div class="p-6">
+        <div class="aspect-w-16 aspect-h-9">
+          <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4 sm:p-6">
           <h3 class="text-xl font-bold mb-2 text-[#003366]">{{ curso.nombre }}</h3>
           <p class="text-gray-700 dark:text-gray-300 mb-4">{{ curso.descripcion_corta }}</p>
           <a href="/curso/{{ curso.nombre }}" class="text-[#F6C90E] font-semibold hover:underline">Ver más</a>
@@ -87,10 +90,10 @@
 </section>
 
 <!-- Valores Institucionales -->
-<section class="py-16 bg-gray-100 dark:bg-gray-900">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Nuestros Valores</h2>
-    <div class="grid md:grid-cols-3 gap-8">
+<section class="py-12 sm:py-16 bg-gray-100 dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Nuestros Valores</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center transition-transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
         <i class="fas fa-chalkboard-teacher text-4xl text-[#003366] mb-4"></i>
         <h3 class="font-bold mb-2">Profesores Capacitados</h3>
@@ -111,14 +114,16 @@
 </section>
 
 <!-- Todos los cursos -->
-<section class="py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Todos nuestros cursos</h2>
-    <div class="grid md:grid-cols-4 gap-8">
+<section class="py-12 sm:py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#003366]" data-aos="fade-up" data-aos-duration="1200">Todos nuestros cursos</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
       {% for curso in cursos %}
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105" data-aos="fade-up" data-aos-delay="{{ loop.index * 50 }}">
-        <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-40 object-cover">
-        <div class="p-4">
+        <div class="aspect-w-16 aspect-h-9">
+          <img src="{{ curso.imagen }}" alt="{{ curso.nombre }}" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4 sm:p-6">
           <h3 class="text-lg font-bold mb-1 text-[#003366]">{{ curso.nombre }}</h3>
           <p class="text-gray-700 dark:text-gray-300 mb-2">{{ curso.descripcion_corta }}</p>
           <a href="/curso/{{ curso.nombre }}" class="text-[#F6C90E] font-semibold hover:underline">Ver más</a>
@@ -130,11 +135,12 @@
 </section>
 
 <!-- Llamado a la acción -->
-<section class="py-16 bg-[#003366]">
-  <div class="container mx-auto px-4 text-center" data-aos="fade-up" data-aos-duration="1200">
-    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para unirte a nuestra comunidad?</h2>
+<section class="py-12 sm:py-16 bg-[#003366]">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="1200">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">¿Listo para unirte a nuestra comunidad?</h2>
     <p class="text-gray-200 mb-6">Descubre todos nuestros cursos y comienza a aprender con nosotros hoy mismo.</p>
-    <a href="/contacto" class="bg-[#F6C90E] hover:bg-yellow-400 text-[#003366] font-bold py-3 px-6 rounded-lg shadow-lg transition-transform hover:scale-105">Contáctanos</a>
+    <a href="/contacto" class="bg-[#F6C90E] hover:bg-yellow-400 text-[#003366] font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg shadow-lg transition-transform hover:scale-105 inline-block">Contáctanos</a>
   </div>
 </section>
+
 {% endblock %}

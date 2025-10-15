@@ -6,6 +6,7 @@
   <title>{% block title %}Escuela Silviano Matamoros{% endblock %}</title>
   <meta name="description" content="Escuela Silviano Matamoros - educación con valores. Cursos, inscripciones y contacto." />
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,8 +16,8 @@
       theme: {
         extend: {
           colors: {
-            azulescuela: '#003366',   /* Azul institucional moderno */
-            doradoescuela: '#F6C90E', /* Dorado llamativo y elegante */
+            azulescuela: '#003366',
+            doradoescuela: '#F6C90E',
             grisfondo: '#f3f4f6',
             grisclaro: '#e5e7eb',
           },
@@ -40,38 +41,11 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <style>
-    /* Transiciones suaves */
     .transition-transform:hover { transform: scale(1.04); transition: all 0.3s ease; }
-
-    /* Botones principales */
-    .btn-primary {
-      background: linear-gradient(90deg, #003366, #F6C90E);
-      color: white;
-      font-weight: 600;
-      padding: 0.6rem 1.5rem;
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    /* Contenedor máximo */
-    .container-max { max-width: 1280px; margin-left:auto; margin-right:auto; }
-
-    /* Animación para links */
-    .link-hover::after {
-      content: '';
-      display: block;
-      height: 2px;
-      width: 0;
-      background: #F6C90E;
-      transition: width 0.3s;
-    }
+    .btn-primary { background: linear-gradient(90deg, #003366, #F6C90E); color: white; font-weight: 600; padding: 0.6rem 1.5rem; border-radius: 0.5rem; transition: all 0.3s ease; }
+    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .link-hover::after { content: ''; display: block; height: 2px; width: 0; background: #F6C90E; transition: width 0.3s; }
     .link-hover:hover::after { width: 100%; }
-
-    /* Sombra para navbar */
     nav { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
   </style>
 
@@ -81,43 +55,41 @@
 
   <!-- Navbar -->
   <nav class="bg-azulescuela dark:bg-gray-800 text-white fixed w-full top-0 z-50">
-    <div class="container-max px-6 py-4 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap md:flex-nowrap justify-between items-center">
+      
       <!-- Logo -->
-      <a href="/" class="flex items-center space-x-3">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="w-12 h-12 rounded-full border-2 border-white/30 object-cover">
-        <span class="text-xl md:text-2xl font-display font-bold tracking-wide">Escuela Silviano Matamoros</span>
+      <a href="/" class="flex items-center space-x-2 sm:space-x-3 w-full md:w-auto mb-2 md:mb-0">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full border-2 border-white/30 object-cover">
+        <span class="text-lg sm:text-xl md:text-2xl font-display font-bold tracking-wide">Escuela Silviano Matamoros</span>
       </a>
 
-      <!-- Menu desktop -->
-      <ul class="hidden md:flex space-x-8 items-center font-semibold">
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-6 items-center font-semibold flex-wrap">
         <li><a href="/" class="link-hover">Inicio</a></li>
         <li><a href="/cursos" class="link-hover">Cursos</a></li>
-        <li><a href="/nosotros" class="link-hover">Nosotros</a></li>
         <li><a href="/contacto" class="link-hover">Contacto</a></li>
       </ul>
 
-      <!-- Acciones -->
-      <div class="flex items-center space-x-3">
-          <!-- Buscador -->
-      <form action="/buscar" method="get" class="hidden md:flex">
-        <input 
-            name="q" 
-            placeholder="Buscar cursos..." 
+      <!-- Actions -->
+      <div class="flex items-center space-x-2 sm:space-x-3 w-full md:w-auto mt-2 md:mt-0">
+        <!-- Search -->
+        <form action="/buscar" method="get" class="hidden md:flex w-full md:w-auto">
+          <input 
+            name="q" placeholder="Buscar cursos..." 
             class="px-3 py-1 rounded-l-md border-0 focus:outline-none focus:ring-2 focus:ring-doradoescuela
-                  text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-300"
-        />
-        <button class="px-3 py-1 rounded-r-md bg-white/20 hover:bg-white/30 text-gray-900 dark:text-gray-100">
+                   text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-300 w-full md:w-auto"
+          />
+          <button class="px-3 py-1 rounded-r-md bg-white/20 hover:bg-white/30 text-gray-900 dark:text-gray-100">
             <i class="fas fa-search"></i>
-        </button>
-      </form>
-
+          </button>
+        </form>
 
         <!-- Dark toggle -->
         <button id="dark-toggle" aria-label="Toggle dark" class="p-2 rounded bg-white/20 hover:bg-white/30">
           <i class="fas fa-moon"></i>
         </button>
 
-        <!-- Menu mobile -->
+        <!-- Mobile menu button -->
         <button id="menu-btn" class="md:hidden p-2">
           <i class="fas fa-bars text-2xl"></i>
         </button>
@@ -125,76 +97,75 @@
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-azulescuela/95 px-6 py-4 space-y-2">
+    <div id="mobile-menu" class="hidden md:hidden bg-azulescuela/95 px-4 sm:px-6 py-4 space-y-2">
       <a href="/" class="block py-2 hover:text-doradoescuela">Inicio</a>
       <a href="/cursos" class="block py-2 hover:text-doradoescuela">Cursos</a>
-      <a href="/nosotros" class="block py-2 hover:text-doradoescuela">Nosotros</a>
       <a href="/contacto" class="block py-2 hover:text-doradoescuela">Contacto</a>
-      <form action="/buscar" method="get" class="flex mt-2">
-        <input name="q" placeholder="Buscar..." class="w-full px-3 py-2 rounded-l-md border-0 focus:outline-none focus:ring-2 focus:ring-doradoescuela" />
+      <form action="/buscar" method="get" class="flex mt-2 w-full">
+        <input name="q" placeholder="Buscar..." class="flex-1 px-3 py-2 rounded-l-md border-0 focus:outline-none focus:ring-2 focus:ring-doradoescuela"/>
         <button class="px-3 py-2 rounded-r-md bg-white/20 hover:bg-white/30"><i class="fas fa-search"></i></button>
       </form>
     </div>
   </nav>
 
   <!-- Main -->
-  <main class="pt-28">
+  <main class="pt-28 px-4 sm:px-6 lg:px-8">
     {% block content %}{% endblock %}
   </main>
-<!-- Footer -->
-<footer class="bg-azulescuela dark:bg-gray-800 text-white mt-12 py-16">
-  <div class="container-max px-6 grid md:grid-cols-4 gap-8">
-    
-    <!-- Sobre Nosotros -->
-    <div data-aos="fade-up">
-      <h3 class="text-lg md:text-xl font-semibold mb-3">Sobre Nosotros</h3>
-      <p class="text-gray-200">
-        Formando generaciones con valores, excelencia académica y habilidades prácticas. La Escuela Silviano Matamoros combina tradición y métodos modernos para potenciar el aprendizaje.
-      </p>
-      <p class="text-gray-300 mt-2 text-sm">
-        Fundada en 1920, hemos destacado a nivel nacional e internacional en educación técnica y general.
-      </p>
-    </div>
 
-    <!-- Enlaces Rápidos -->
-    <div data-aos="fade-up" data-aos-delay="100">
-      <h3 class="text-lg md:text-xl font-semibold mb-3">Enlaces Rápidos</h3>
-      <ul class="space-y-2 text-gray-200">
-        <li><a href="/" class="hover:text-doradoescuela transition">Inicio</a></li>
-        <li><a href="/cursos" class="hover:text-doradoescuela transition">Cursos</a></li>
-        <li><a href="/nosotros" class="hover:text-doradoescuela transition">Quiénes Somos</a></li>
-        <li><a href="/contacto" class="hover:text-doradoescuela transition">Contacto</a></li>
-        <li><a href="/inscripciones" class="hover:text-doradoescuela transition">Inscripciones</a></li>
-      </ul>
-    </div>
+  <!-- Footer -->
+  <footer class="bg-azulescuela dark:bg-gray-800 text-white mt-12 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
 
-    <!-- Contacto -->
-    <div data-aos="fade-up" data-aos-delay="200">
-      <h3 class="text-lg md:text-xl font-semibold mb-3">Contacto</h3>
-      <p class="flex items-center text-gray-200 mb-2"><i class="fa-solid fa-location-dot mr-2"></i>De la estatua de montoya 2 cuadra abajo, contigua al banpro las palmas</p>
-      <p class="flex items-center text-gray-200 mb-2"><i class="fa-solid fa-envelope mr-2"></i> contacto@escuelasilviano.com</p>
-      <p class="flex items-center text-gray-200 mb-2"><i class="fa-solid fa-phone mr-2"></i> +505 8888-8888</p>
-      <p class="flex items-center text-gray-200"><i class="fa-solid fa-clock mr-2"></i> Lun-Vie: 7:00am - 5:00pm</p>
-    </div>
+      <!-- Sobre Nosotros -->
+      <div data-aos="fade-up">
+        <h3 class="text-lg sm:text-xl font-semibold mb-3">Sobre Nosotros</h3>
+        <p class="text-gray-200 text-sm sm:text-base">
+          Formando generaciones con valores, excelencia académica y habilidades prácticas. La Escuela Silviano Matamoros combina tradición y métodos modernos para potenciar el aprendizaje.
+        </p>
+        <p class="text-gray-300 mt-2 text-xs sm:text-sm">
+          Fundada en 1920, hemos destacado a nivel nacional e internacional en educación técnica y general.
+        </p>
+      </div>
 
-    <!-- Redes Sociales y Newsletter -->
-    <div data-aos="fade-up" data-aos-delay="300">
-      <h3 class="text-lg md:text-xl font-semibold mb-3">Síguenos</h3>
-      <div class="flex space-x-4 mb-4">
-        <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-twitter"></i></a>
+      <!-- Enlaces Rápidos -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-lg sm:text-xl font-semibold mb-3">Enlaces Rápidos</h3>
+        <ul class="space-y-2 text-gray-200 text-sm sm:text-base">
+          <li><a href="/" class="hover:text-doradoescuela transition">Inicio</a></li>
+          <li><a href="/cursos" class="hover:text-doradoescuela transition">Cursos</a></li>
+          <li><a href="/nosotros" class="hover:text-doradoescuela transition">Quiénes Somos</a></li>
+          <li><a href="/contacto" class="hover:text-doradoescuela transition">Contacto</a></li>
+          <li><a href="/inscripciones" class="hover:text-doradoescuela transition">Inscripciones</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-lg sm:text-xl font-semibold mb-3">Contacto</h3>
+        <p class="flex items-center text-gray-200 mb-2 text-sm sm:text-base"><i class="fa-solid fa-location-dot mr-2"></i>De la estatua de montoya 2 cuadra abajo, contigua al banpro las palmas</p>
+        <p class="flex items-center text-gray-200 mb-2 text-sm sm:text-base"><i class="fa-solid fa-envelope mr-2"></i> contacto@escuelasilviano.com</p>
+        <p class="flex items-center text-gray-200 mb-2 text-sm sm:text-base"><i class="fa-solid fa-phone mr-2"></i> +505 8888-8888</p>
+        <p class="flex items-center text-gray-200 text-sm sm:text-base"><i class="fa-solid fa-clock mr-2"></i> Lun-Vie: 7:00am - 5:00pm</p>
+      </div>
+
+      <!-- Redes Sociales -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-lg sm:text-xl font-semibold mb-3">Síguenos</h3>
+        <div class="flex flex-wrap space-x-4 mb-4 text-lg">
+          <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="hover:text-doradoescuela transition"><i class="fab fa-twitter"></i></a>
+        </div>
       </div>
 
     </div>
-  </div>
 
-  <div class="text-center mt-12 text-sm md:text-base text-gray-300 dark:text-gray-400">
-    © 2025 Escuela Silviano Matamoros - Todos los derechos reservados | Diseño web por el equipo de tecnología
-  </div>
-</footer>
-
+    <div class="text-center mt-12 text-sm sm:text-base text-gray-300 dark:text-gray-400">
+      © 2025 Escuela Silviano Matamoros - Todos los derechos reservados | Diseño web por el equipo de tecnología
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script>
